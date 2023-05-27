@@ -19,14 +19,13 @@ def index(request):
 
 def post_detail(request, post_id):
     post = get_object_or_404(
-        Post.objects.select_related(
-            'category', 'author', 'location'
-            ).filter(
-                id=post_id,
-                pub_date__lt=make_aware(datetime.now()),
-                is_published=True,
-                category__is_published=True),
+        Post.objects.select_related('category', 'author', 'location').filter(
+            id=post_id,
+            pub_date__lt=make_aware(datetime.now()),
+            is_published=True,
+            category__is_published=True,
         )
+    )
     template_name = 'blog/detail.html'
     context = {'post': post}
     return render(request, template_name, context)
