@@ -20,7 +20,7 @@ class PostAdmin(admin.ModelAdmin):
         'is_published',
         'category',
         'text',
-        )
+    )
     search_fields = ('title',)
     list_fields = ('is_published',)
     list_filter = ('created_at',)
